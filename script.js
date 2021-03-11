@@ -1,5 +1,3 @@
-const { sortAndDeduplicateDiagnostics } = require('typescript');
-
 const main = document.getElementById('main');
 const addUserBtn = document.getElementById('add-user');
 const doubleBtn = document.getElementById('double');
@@ -35,4 +33,20 @@ async function getRandomUser() {
 //add new obj to data arr
 function addData(obj) {
 	data.push(obj);
+
+	updateDOM();
+}
+
+//update DOM
+
+function updateDOM(providedData = data) {
+	//clear main div
+	main.innerHTML = '<h2><strong>Person</strong>Wealth</h2>';
+
+	providedData.forEach((item) => {
+		const element = document.createElement('div');
+		element.classList.add('person');
+		element.innerHTML = `<strong>${item.name}</strong> ${item.money}`;
+		main.appendChild(element);
+	});
 }
