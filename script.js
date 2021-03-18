@@ -47,7 +47,28 @@ function sortByRichest() {
 	updateDOM();
 }
 
-//add new obj to data arr
+//show millionares
+
+function showMillionares() {
+	data = data.filter((user) => user.money > 1000000);
+	updateDOM();
+}
+
+//calculate wealth
+
+function calculateWealth() {
+	const wealth = data.reduce((acc, user) => (acc += user.money), 0);
+
+	// console.log(formatMoney(wealth));
+
+	const wealthEl = document.createElement('div');
+	wealthEl.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
+		wealth
+	)}</strong></h3>`;
+	main.appendChild(wealthEl);
+}
+
+// Add new obj to data arr
 function addData(obj) {
 	data.push(obj);
 
@@ -80,9 +101,11 @@ function formatMoney(number) {
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
 sortBtn.addEventListener('click', sortByRichest);
+showMilllionaresBtn.addEventListener('click', showMillionares);
+calculateWealthBtn.addEventListener('click', calculateWealth);
 
 //!examples
-//map-- returns a new array
+//!map-- returns a new array
 
 // const arr = [1, 2, 3, 4, 5];
 
@@ -93,10 +116,28 @@ sortBtn.addEventListener('click', sortByRichest);
 // console.log(arr2);
 //Array ["Number 1", "Number 2", "Number 3", "Number 4", "Number 5"]
 
-//sort-- needs a compare function
+//!sort-- needs a compare function
 
 // const arr = [1, 2, 110, 3, 4, 330];
 
 // const sortedArr = arr.sort((a, b) => a - b);
 
 // console.log(sortedArr);
+
+//!filter
+// const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+// const result = words.filter(word => word.length > 6);
+
+// console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
+
+//!REDUCE
+// The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in single output value.
+
+// const arr = [1, 2, 3, 4, 5];
+
+//0 as start value
+// const total = arr.reduce((acc, num) => acc + num, 0);
+
+// console.log(total);
