@@ -30,6 +30,23 @@ async function getRandomUser() {
 	addData(newUser);
 }
 
+//double everyones money
+
+function doubleMoney() {
+	data = data.map((user) => {
+		return { ...user, money: user.money * 2 };
+	});
+	updateDOM();
+}
+
+//sort by richest
+
+function sortByRichest() {
+	data.sort((a, b) => b.money - a.money);
+
+	updateDOM();
+}
+
 //add new obj to data arr
 function addData(obj) {
 	data.push(obj);
@@ -61,3 +78,25 @@ function formatMoney(number) {
 //event listeners
 
 addUserBtn.addEventListener('click', getRandomUser);
+doubleBtn.addEventListener('click', doubleMoney);
+sortBtn.addEventListener('click', sortByRichest);
+
+//!examples
+//map-- returns a new array
+
+// const arr = [1, 2, 3, 4, 5];
+
+// const arr2 = arr.map((item) => {
+// 	return `Number ${item}`;
+// });
+
+// console.log(arr2);
+//Array ["Number 1", "Number 2", "Number 3", "Number 4", "Number 5"]
+
+//sort-- needs a compare function
+
+// const arr = [1, 2, 110, 3, 4, 330];
+
+// const sortedArr = arr.sort((a, b) => a - b);
+
+// console.log(sortedArr);
